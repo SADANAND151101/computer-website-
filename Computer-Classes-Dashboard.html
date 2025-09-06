@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduLearn - Computer Classes & Online Learning Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#4F46E5',
+secondary: '#10B981'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.search-input:focus {
+outline: none;
+box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+.custom-checkbox {
+position: relative;
+padding-left: 28px;
+cursor: pointer;
+user-select: none;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #e2e8f0;
+border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkmark {
+border-color: #4F46E5;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #4F46E5;
+border-color: #4F46E5;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 44px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.switch-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #e2e8f0;
+transition: .4s;
+border-radius: 24px;
+}
+.switch-slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .switch-slider {
+background-color: #4F46E5;
+}
+input:checked + .switch-slider:before {
+transform: translateX(20px);
+}
+.range-slider {
+-webkit-appearance: none;
+width: 100%;
+height: 6px;
+border-radius: 5px;
+background: #e2e8f0;
+outline: none;
+}
+.range-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background: #4F46E5;
+cursor: pointer;
+}
+.range-slider::-moz-range-thumb {
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background: #4F46E5;
+cursor: pointer;
+border: none;
+}
+.custom-radio {
+position: relative;
+padding-left: 28px;
+cursor: pointer;
+user-select: none;
+}
+.custom-radio input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.radio-mark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #e2e8f0;
+border-radius: 50%;
+}
+.custom-radio:hover input ~ .radio-mark {
+border-color: #4F46E5;
+}
+.custom-radio input:checked ~ .radio-mark {
+border-color: #4F46E5;
+}
+.radio-mark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-radio input:checked ~ .radio-mark:after {
+display: block;
+}
+.custom-radio .radio-mark:after {
+top: 3px;
+left: 3px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: #4F46E5;
+}
+.tab-switcher .active-tab {
+background-color: #4F46E5;
+color: white;
+}
+.course-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.instructor-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+</style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+<!-- Header & Navigation -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+<div class="container mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center">
+<a href="#" class="text-3xl font-['Pacifico'] text-primary mr-10">RAJ</a>
+<nav class="hidden md:flex space-x-8">
+<a href="#" class="text-gray-800 hover:text-primary font-medium">Home</a>
+<a href="#" class="text-gray-800 hover:text-primary font-medium">Courses</a>
+<a href="#" class="text-gray-800 hover:text-primary font-medium">Instructors</a>
+<a href="#" class="text-gray-800 hover:text-primary font-medium">About Us</a>
+<a href="#" class="text-gray-800 hover:text-primary font-medium">Contact</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 cursor-pointer">
+<i class="ri-search-line ri-lg"></i>
+</div>
+<div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 cursor-pointer">
+<i class="ri-notification-3-line ri-lg"></i>
+</div>
+<button class="bg-white border border-gray-300 text-gray-700 px-4 py-2 !rounded-button whitespace-nowrap hover:bg-gray-50">Sign In</button>
+<button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-primary/90">Sign Up</button>
+<div class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 cursor-pointer">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center h-[600px]" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20education%20technology%20classroom%20with%20students%20learning%20computer%20programming%2C%20clean%20and%20minimalist%20design%2C%20soft%20lighting%2C%20blue%20and%20white%20color%20scheme%2C%20professional%20education%20environment%2C%20high-quality%20educational%20technology&width=1920&height=600&seq=1&orientation=landscape');">
+<div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+<div class="container mx-auto px-4 h-full flex items-center relative z-10">
+<div class="max-w-2xl">
+<h1 class="text-5xl font-bold mb-6 text-gray-900">Welcome to Raj Computer Institute</h1>
+<p class="text-xl text-gray-700 mb-8">Join our comprehensive learning platform with industry-leading instructors and cutting-edge curriculum designed to prepare you for the tech careers of tomorrow.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-primary/90 font-medium">Explore Courses</button>
+<button class="bg-white border border-gray-300 text-gray-700 px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-50 font-medium">View Demo</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Search Section -->
+<section class="py-12 bg-white">
+<div class="container mx-auto px-4">
+<div class="bg-white rounded-lg shadow-lg p-8 -mt-24 relative z-20">
+<h2 class="text-2xl font-bold mb-6 text-center">Find Your Perfect Course</h2>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-1 relative">
+<i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+<input type="text" placeholder="Search for courses, topics, or skills" class="search-input w-full pl-12 pr-4 py-3 border border-gray-300 rounded focus:border-primary text-sm">
+</div>
+<div class="w-full md:w-48">
+<div class="relative">
+<select class="w-full appearance-none bg-white border border-gray-300 rounded px-4 py-3 pr-8 focus:border-primary text-sm">
+<option>All Categories</option>
+<option>Web Development</option>
+<option>Data Science</option>
+<option>Mobile Apps</option>
+<option>Cybersecurity</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<div class="w-full md:w-48">
+<div class="relative">
+<select class="w-full appearance-none bg-white border border-gray-300 rounded px-4 py-3 pr-8 focus:border-primary text-sm">
+<option>All Levels</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<button class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-primary/90">Search</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Course Categories -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Explore Course Categories</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Discover a wide range of computer science and technology courses designed to help you master in-demand skills.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-lg mb-4">
+<i class="ri-code-s-slash-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Web Development</h3>
+<p class="text-gray-600 mb-4">Learn to build responsive websites and web applications</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">24 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-green-100 rounded-lg mb-4">
+<i class="ri-database-2-line ri-2x text-green-600"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Data Science</h3>
+<p class="text-gray-600 mb-4">Master data analysis, visualization, and machine learning</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">18 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-purple-100 rounded-lg mb-4">
+<i class="ri-smartphone-line ri-2x text-purple-600"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Mobile Development</h3>
+<p class="text-gray-600 mb-4">Create native and cross-platform mobile applications</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">15 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-red-100 rounded-lg mb-4">
+<i class="ri-shield-keyhole-line ri-2x text-red-600"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Cybersecurity</h3>
+<p class="text-gray-600 mb-4">Learn to protect systems, networks, and programs</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">12 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-yellow-100 rounded-lg mb-4">
+<i class="ri-ai-generate ri-2x text-yellow-600"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Artificial Intelligence</h3>
+<p class="text-gray-600 mb-4">Explore machine learning, neural networks, and AI applications</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">9 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-indigo-100 rounded-lg mb-4">
+<i class="ri-cloud-line ri-2x text-indigo-600"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Cloud Computing</h3>
+<p class="text-gray-600 mb-4">Master AWS, Azure, Google Cloud, and DevOps practices</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">14 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-pink-100 rounded-lg mb-4">
+<i class="ri-gamepad-line ri-2x text-pink-600"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Game Development</h3>
+<p class="text-gray-600 mb-4">Create immersive games with Unity, Unreal Engine, and more</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">8 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+<div class="w-16 h-16 flex items-center justify-center bg-teal-100 rounded-lg mb-4">
+<i class="ri-robot-line ri-2x text-teal-600"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Robotics</h3>
+<p class="text-gray-600 mb-4">Learn robotics programming, sensors, and automation</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">6 Courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore <i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Courses -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-12">
+<div>
+<h2 class="text-3xl font-bold mb-4">Featured Courses</h2>
+<p class="text-gray-600">Explore our most popular and highly-rated courses</p>
+</div>
+<div class="tab-switcher bg-gray-100 p-1 rounded-full">
+<button class="px-4 py-2 rounded-full active-tab">All</button>
+<button class="px-4 py-2 rounded-full text-gray-700">Popular</button>
+<button class="px-4 py-2 rounded-full text-gray-700">Newest</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=modern%20computer%20programming%20classroom%20with%20students%20learning%20web%20development%2C%20clean%20and%20professional%20environment%2C%20showing%20code%20on%20screens%2C%20bright%20and%20engaging%20learning%20space&width=600&height=340&seq=2&orientation=landscape" alt="Web Development Course" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">BESTSELLER</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-3">
+<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Web Development</span>
+<div class="ml-auto flex items-center">
+<i class="ri-star-fill text-yellow-400"></i>
+<span class="ml-1 text-sm font-medium">4.8</span>
+<span class="ml-1 text-xs text-gray-500">(2,345)</span>
+</div>
+</div>
+<h3 class="text-xl font-bold mb-2">Complete Web Development Bootcamp</h3>
+<p class="text-gray-600 text-sm mb-4">Master HTML, CSS, JavaScript, React, Node.js and build full-stack web applications from scratch.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20web%20development%20instructor%20with%20glasses%2C%20neutral%20background%2C%20friendly%20smile&width=100&height=100&seq=3&orientation=squarish" alt="Instructor" class="w-10 h-10 rounded-full object-cover">
+<div class="ml-3">
+<p class="text-sm font-medium">Dr. Michael Richardson</p>
+<p class="text-xs text-gray-500">Senior Web Developer</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div>
+<p class="text-2xl font-bold text-gray-900">$89.99</p>
+<p class="text-sm text-gray-500 line-through">$129.99</p>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-time-line mr-1"></i> 12 weeks
+</div>
+</div>
+<button class="mt-4 w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap hover:bg-primary/90 font-medium">Enroll Now</button>
+</div>
+</div>
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=data%20science%20classroom%20with%20students%20analyzing%20data%20visualizations%20on%20large%20screens%2C%20professional%20learning%20environment%2C%20clean%20modern%20space%20with%20data%20charts%20visible&width=600&height=340&seq=4&orientation=landscape" alt="Data Science Course" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-3">
+<span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Data Science</span>
+<div class="ml-auto flex items-center">
+<i class="ri-star-fill text-yellow-400"></i>
+<span class="ml-1 text-sm font-medium">4.7</span>
+<span class="ml-1 text-xs text-gray-500">(1,829)</span>
+</div>
+</div>
+<h3 class="text-xl font-bold mb-2">Data Science & Machine Learning</h3>
+<p class="text-gray-600 text-sm mb-4">Learn Python, data analysis, visualization, machine learning algorithms and practical applications.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20data%20scientist%20with%20dark%20hair%2C%20neutral%20background%2C%20confident%20expression&width=100&height=100&seq=5&orientation=squarish" alt="Instructor" class="w-10 h-10 rounded-full object-cover">
+<div class="ml-3">
+<p class="text-sm font-medium">Dr. Sophia Chen</p>
+<p class="text-xs text-gray-500">Lead Data Scientist</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div>
+<p class="text-2xl font-bold text-gray-900">₹7999</p>
+<p class="text-sm text-gray-500 line-through">$149.99</p>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-time-line mr-1"></i> 10 weeks
+</div>
+</div>
+<button class="mt-4 w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap hover:bg-primary/90 font-medium">Enroll Now</button>
+</div>
+</div>
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=cybersecurity%20classroom%20with%20students%20working%20on%20computer%20security%20exercises%2C%20professional%20monitors%20showing%20security%20software%2C%20modern%20tech%20learning%20environment&width=600&height=340&seq=6&orientation=landscape" alt="Cybersecurity Course" class="w-full h-48 object-cover object-top">
+</div>
+<div class="p-6">
+<div class="flex items-center mb-3">
+<span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Cybersecurity</span>
+<div class="ml-auto flex items-center">
+<i class="ri-star-fill text-yellow-400"></i>
+<span class="ml-1 text-sm font-medium">4.9</span>
+<span class="ml-1 text-xs text-gray-500">(956)</span>
+</div>
+</div>
+<h3 class="text-xl font-bold mb-2">Cybersecurity Professional</h3>
+<p class="text-gray-600 text-sm mb-4">Master network security, ethical hacking, cryptography, and prepare for security certifications.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20cybersecurity%20expert%20with%20beard%2C%20neutral%20background%2C%20serious%20expression&width=100&height=100&seq=7&orientation=squarish" alt="Instructor" class="w-10 h-10 rounded-full object-cover">
+<div class="ml-3">
+<p class="text-sm font-medium">James Wilson</p>
+<p class="text-xs text-gray-500">Security Consultant</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div>
+<p class="text-2xl font-bold text-gray-900">$109.99</p>
+<p class="text-sm text-gray-500 line-through">$179.99</p>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-time-line mr-1"></i> 14 weeks
+</div>
+</div>
+<button class="mt-4 w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap hover:bg-primary/90 font-medium">Enroll Now</button>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<button class="bg-white border border-gray-300 text-gray-700 px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-50 font-medium">View All Courses</button>
+</div>
+</div>
+</section>
+<!-- Admission Process -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Simple Admission Process</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Our streamlined admission process makes it easy to start your learning journey with just a few simple steps.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="bg-white p-6 rounded-lg shadow-md text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mx-auto mb-4">
+<i class="ri-user-add-line ri-2x text-primary"></i>
+</div>
+<div class="relative mb-6">
+<div class="absolute top-0 right-0 -mr-4 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</div>
+</div>
+<h3 class="text-xl font-semibold mb-2">Create Account</h3>
+<p class="text-gray-600">Sign up for a free account to browse courses and access resources.</p>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-green-100 rounded-full mx-auto mb-4">
+<i class="ri-file-list-3-line ri-2x text-green-600"></i>
+</div>
+<div class="relative mb-6">
+<div class="absolute top-0 right-0 -mr-4 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</div>
+</div>
+<h3 class="text-xl font-semibold mb-2">Fill Application</h3>
+<p class="text-gray-600">Complete the online application form with your details and preferences.</p>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-yellow-100 rounded-full mx-auto mb-4">
+<i class="ri-secure-payment-line ri-2x text-yellow-600"></i>
+</div>
+<div class="relative mb-6">
+<div class="absolute top-0 right-0 -mr-4 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</div>
+</div>
+<h3 class="text-xl font-semibold mb-2">Pay Fees</h3>
+<p class="text-gray-600">Choose your payment plan and complete the secure payment process.</p>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-purple-100 rounded-full mx-auto mb-4">
+<i class="ri-graduation-cap-line ri-2x text-purple-600"></i>
+</div>
+<div class="relative mb-6">
+<div class="absolute top-0 right-0 -mr-4 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</div>
+</div>
+<h3 class="text-xl font-semibold mb-2">Start Learning</h3>
+<p class="text-gray-600">Access your courses immediately and begin your learning journey.</p>
+</div>
+</div>
+<div class="mt-12 text-center">
+<button class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-primary/90 font-medium">Apply Now</button>
+</div>
+</div>
+</section>
+<!-- Fee Structure -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Transparent Fee Structure</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Choose the plan that works best for you with our flexible payment options and transparent pricing.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+<div class="p-6 bg-gray-50 border-b border-gray-200">
+<h3 class="text-2xl font-bold text-center mb-2">Basic Plan</h3>
+<div class="text-center mb-4">
+<span class="text-4xl font-bold">$299</span>
+<span class="text-gray-500">/course</span>
+</div>
+<p class="text-center text-gray-600">Perfect for beginners looking to learn a specific skill</p>
+</div>
+<div class="p-6">
+<ul class="space-y-4">
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Access to single course</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>6 months course access</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Course completion certificate</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>24/7 online support</span>
+</li>
+<li class="flex items-start text-gray-400">
+<i class="ri-close-line mt-1 mr-2"></i>
+<span>Live Q&A sessions</span>
+</li>
+<li class="flex items-start text-gray-400">
+<i class="ri-close-line mt-1 mr-2"></i>
+<span>Career counseling</span>
+</li>
+</ul>
+<button class="mt-8 w-full bg-white border border-primary text-primary py-2 !rounded-button whitespace-nowrap hover:bg-primary/5 font-medium">Select Plan</button>
+</div>
+</div>
+<div class="bg-white border-2 border-primary rounded-lg shadow-lg overflow-hidden transform scale-105">
+<div class="p-6 bg-primary text-white">
+<div class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">POPULAR</div>
+<h3 class="text-2xl font-bold text-center mb-2">Pro Plan</h3>
+<div class="text-center mb-4">
+<span class="text-4xl font-bold">$799</span>
+<span class="text-gray-200">/semester</span>
+</div>
+<p class="text-center text-gray-100">Ideal for students committed to building a career</p>
+</div>
+<div class="p-6">
+<ul class="space-y-4">
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Access to 5 courses</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>1 year course access</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Course completion certificates</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>24/7 priority support</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Weekly live Q&A sessions</span>
+</li>
+<li class="flex items-start text-gray-400">
+<i class="ri-close-line mt-1 mr-2"></i>
+<span>Career counseling</span>
+</li>
+</ul>
+<button class="mt-8 w-full bg-primary text-white py-2 !rounded-button whitespace-nowrap hover:bg-primary/90 font-medium">Select Plan</button>
+</div>
+</div>
+<div class="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+<div class="p-6 bg-gray-50 border-b border-gray-200">
+<h3 class="text-2xl font-bold text-center mb-2">Premium Plan</h3>
+<div class="text-center mb-4">
+<span class="text-4xl font-bold">$1,499</span>
+<span class="text-gray-500">/year</span>
+</div>
+<p class="text-center text-gray-600">Complete solution for serious tech professionals</p>
+</div>
+<div class="p-6">
+<ul class="space-y-4">
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Unlimited course access</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Lifetime course updates</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>All certificates included</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>24/7 VIP support</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>Unlimited live Q&A sessions</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-green-500 mt-1 mr-2"></i>
+<span>1-on-1 career counseling</span>
+</li>
+</ul>
+<button class="mt-8 w-full bg-white border border-primary text-primary py-2 !rounded-button whitespace-nowrap hover:bg-primary/5 font-medium">Select Plan</button>
+</div>
+</div>
+</div>
+<div class="mt-12 bg-gray-50 p-6 rounded-lg">
+<h3 class="text-xl font-bold mb-4">Additional Information</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div>
+<h4 class="font-semibold mb-2 flex items-center">
+<i class="ri-scholarship-line mr-2 text-primary"></i>
+Scholarships
+</h4>
+<p class="text-gray-600 text-sm">Merit-based scholarships available for outstanding students. Up to 50% tuition discount.</p>
+</div>
+<div>
+<h4 class="font-semibold mb-2 flex items-center">
+<i class="ri-bank-card-line mr-2 text-primary"></i>
+Payment Options
+</h4>
+<p class="text-gray-600 text-sm">Flexible payment plans available. Pay in 3, 6, or 12 monthly installments.</p>
+</div>
+<div>
+<h4 class="font-semibold mb-2 flex items-center">
+<i class="ri-refund-2-line mr-2 text-primary"></i>
+Refund Policy
+</h4>
+<p class="text-gray-600 text-sm">7-day money-back guarantee if you're not satisfied with your course.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Admission Form -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="md:flex">
+<div class="md:w-1/3 bg-primary p-8 text-white">
+<h2 class="text-2xl font-bold mb-6">Apply for Admission</h2>
+<p class="mb-8">Fill out the form to start your application process. Our team will review your application and get back to you within 48 hours.</p>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full mr-3 shrink-0">
+<i class="ri-mail-line text-white"></i>
+</div>
+<div>
+<h3 class="font-semibold">Email Us</h3>
+<p class="text-sm text-gray-100">admissions@edulearn.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full mr-3 shrink-0">
+<i class="ri-phone-line text-white"></i>
+</div>
+<div>
+<h3 class="font-semibold">Call Us</h3>
+<p class="text-sm text-gray-100">+1 (800) 123-4567</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full mr-3 shrink-0">
+<i class="ri-map-pin-line text-white"></i>
+</div>
+<div>
+<h3 class="font-semibold">Visit Us</h3>
+<p class="text-sm text-gray-100">123 Education St, Tech City, CA 94103</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-2/3 p-8">
+<h3 class="text-xl font-bold mb-6">Personal Information</h3>
+<form>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="first-name">First Name</label>
+<input type="text" id="first-name" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20 focus:border-primary">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="last-name">Last Name</label>
+<input type="text" id="last-name" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20 focus:border-primary">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="email">Email Address</label>
+<input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20 focus:border-primary">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2" for="phone">Phone Number</label>
+<input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20 focus:border-primary">
+</div>
+</div>
+<h3 class="text-xl font-bold mb-6">Course Selection</h3>
+<div class="mb-6">
+<label class="block text-sm font-medium text-gray-700 mb-2">Select Program</label>
+<div class="relative">
+<select class="w-full appearance-none bg-white border border-gray-300 rounded px-4 py-2 pr-8 focus:ring-2 focus:ring-primary/20 focus:border-primary">
+<option>Web Development Bootcamp</option>
+<option>Data Science & Machine Learning</option>
+<option>Cybersecurity Professional</option>
+<option>Mobile App Development</option>
+<option>Cloud Computing & DevOps</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label class="block text-sm font-medium text-gray-700 mb-2">Education Level</label>
+<div class="space-y-2">
+<label class="custom-radio block">
+<input type="radio" name="education" checked>
+<span class="radio-mark"></span>
+High School Diploma
+</label>
+<label class="custom-radio block">
+<input type="radio" name="education">
+<span class="radio-mark"></span>
+Associate's Degree
+</label>
+<label class="custom-radio block">
+<input type="radio" name="education">
+<span class="radio-mark"></span>
+Bachelor's Degree
+</label>
+<label class="custom-radio block">
+<input type="radio" name="education">
+<span class="radio-mark"></span>
+Master's Degree or Higher
+</label>
+</div>
+</div>
+<div class="mb-6">
+<label class="block text-sm font-medium text-gray-700 mb-2">How did you hear about us?</label>
+<div class="relative">
+<select class="w-full appearance-none bg-white border border-gray-300 rounded px-4 py-2 pr-8 focus:ring-2 focus:ring-primary/20 focus:border-primary">
+<option>Search Engine (Google, Bing, etc.)</option>
+<option>Social Media</option>
+<option>Friend or Family</option>
+<option>Advertisement</option>
+<option>Other</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label class="custom-checkbox block">
+<input type="checkbox">
+<span class="checkmark"></span>
+I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+</label>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-3 !rounded-button whitespace-nowrap hover:bg-primary/90 font-medium">Submit Application</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Faculty Management -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Meet Our Expert Instructors</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Learn from industry professionals with years of real-world experience and a passion for teaching.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="instructor-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20web%20development%20instructor%20with%20glasses%2C%20neutral%20background%2C%20friendly%20smile%2C%20professional%20appearance&width=400&height=300&seq=8&orientation=portrait" alt="Dr. Michael Richardson" class="w-full h-64 object-cover object-top">
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+<h3 class="text-white font-bold">Dr. Michael Richardson</h3>
+<p class="text-gray-200 text-sm">Web Development</p>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-4">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<span class="ml-2 text-sm text-gray-600">4.8 (2,345 reviews)</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Senior Web Developer with 12+ years of experience. Specializes in full-stack development and modern JavaScript frameworks.</p>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-book-open-line mr-1"></i> 8 Courses
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i> 12,450 Students
+</div>
+</div>
+<button class="mt-4 w-full bg-white border border-primary text-primary py-2 !rounded-button whitespace-nowrap hover:bg-primary/5 font-medium">View Profile</button>
+</div>
+</div>
+<div class="instructor-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20data%20scientist%20with%20dark%20hair%2C%20neutral%20background%2C%20confident%20expression%2C%20professional%20appearance&width=400&height=300&seq=9&orientation=portrait" alt="Dr. Sophia Chen" class="w-full h-64 object-cover object-top">
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+<h3 class="text-white font-bold">Dr. Sophia Chen</h3>
+<p class="text-gray-200 text-sm">Data Science</p>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-4">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<span class="ml-2 text-sm text-gray-600">4.7 (1,829 reviews)</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Lead Data Scientist with a PhD in Computer Science. Expert in machine learning algorithms and data visualization.</p>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-book-open-line mr-1"></i> 6 Courses
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i> 9,870 Students
+</div>
+</div>
+<button class="mt-4 w-full bg-white border border-primary text-primary py-2 !rounded-button whitespace-nowrap hover:bg-primary/5 font-medium">View Profile</button>
+</div>
+</div>
+<div class="instructor-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20cybersecurity%20expert%20with%20beard%2C%20neutral%20background%2C%20serious%20expression%2C%20professional%20appearance&width=400&height=300&seq=10&orientation=portrait" alt="James Wilson" class="w-full h-64 object-cover object-top">
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+<h3 class="text-white font-bold">James Wilson</h3>
+<p class="text-gray-200 text-sm">Cybersecurity</p>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-4">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<span class="ml-2 text-sm text-gray-600">4.9 (956 reviews)</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Security Consultant with 15+ years in the field. Certified ethical hacker and network security specialist.</p>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-book-open-line mr-1"></i> 5 Courses
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i> 7,230 Students
+</div>
+</div>
+<button class="mt-4 w-full bg-white border border-primary text-primary py-2 !rounded-button whitespace-nowrap hover:bg-primary/5 font-medium">View Profile</button>
+</div>
+</div>
+<div class="instructor-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20mobile%20app%20developer%20with%20shoulder-length%20hair%2C%20neutral%20background%2C%20friendly%20expression%2C%20professional%20appearance&width=400&height=300&seq=11&orientation=portrait" alt="Emily Rodriguez" class="w-full h-64 object-cover object-top">
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+<h3 class="text-white font-bold">Emily Rodriguez</h3>
+<p class="text-gray-200 text-sm">Mobile Development</p>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-4">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-yellow-400"></i>
+</div>
+<span class="ml-2 text-sm text-gray-600">4.6 (1,245 reviews)</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Senior Mobile Developer specializing in iOS and Android. Former tech lead at major app development companies.</p>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-book-open-line mr-1"></i> 7 Courses
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i> 8,560 Students
+</div>
+</div>
+<button class="mt-4 w-full bg-white border border-primary text-primary py-2 !rounded-button whitespace-nowrap hover:bg-primary/5 font-medium">View Profile</button>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<button class="bg-white border border-gray-300 text-gray-700 px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-50 font-medium">View All Instructors</button>
+</div>
+</div>
+</section>
+<!-- Student Dashboard Preview -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Student Dashboard</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Track your progress, access your courses, and manage your learning journey all in one place.</p>
+</div>
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="border-b border-gray-200">
+<div class="flex">
+<button class="px-6 py-4 border-b-2 border-primary text-primary font-medium">Dashboard</button>
+<button class="px-6 py-4 text-gray-500 hover:text-gray-700">My Courses</button>
+<button class="px-6 py-4 text-gray-500 hover:text-gray-700">Assignments</button>
+<button class="px-6 py-4 text-gray-500 hover:text-gray-700">Certificates</button>
+<button class="px-6 py-4 text-gray-500 hover:text-gray-700">Settings</button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-6">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20male%20student%20with%20casual%20professional%20attire%2C%20neutral%20background&width=100&height=100&seq=12&orientation=squarish" alt="Student" class="w-16 h-16 rounded-full object-cover mr-4">
+<div>
+<h3 class="text-xl font-bold">Welcome back, David!</h3>
+<p class="text-gray-600">Continue where you left off</p>
+</div>
+<div class="ml-auto">
+<span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Pro Plan</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-blue-50 p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-medium">Courses in Progress</h4>
+<span class="text-2xl font-bold text-primary">4</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="bg-green-50 p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-medium">Completed Courses</h4>
+<span class="text-2xl font-bold text-green-600">7</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="bg-yellow-50 p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-medium">Certificates Earned</h4>
+<span class="text-2xl font-bold text-yellow-600">5</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2">
+<div class="bg-yellow-500 h-2 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-4">Continue Learning</h3>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+<div class="bg-white border border-gray-200 rounded-lg overflow-hidden flex">
+<img src="https://readdy.ai/api/search-image?query=web%20development%20code%20on%20computer%20screen%2C%20professional%20clean%20image&width=200&height=150&seq=13&orientation=squarish" alt="Web Development" class="w-32 h-full object-cover">
+<div class="p-4 flex-1">
+<h4 class="font-bold mb-1">Complete Web Development Bootcamp</h4>
+<p class="text-sm text-gray-600 mb-2">Module 7: Advanced JavaScript</p>
+<div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex justify-between items-center text-xs text-gray-500">
+<span>65% complete</span>
+<span>Last accessed: 2 hours ago</span>
+</div>
+<button class="mt-3 bg-primary text-white px-4 py-1 !rounded-button whitespace-nowrap hover:bg-primary/90 text-sm">Continue</button>
+</div>
+</div>
+<div class="bg-white border border-gray-200 rounded-lg overflow-hidden flex">
+<img src="https://readdy.ai/api/search-image?query=data%20science%20visualization%20charts%20on%20computer%20screen%2C%20professional%20clean%20image&width=200&height=150&seq=14&orientation=squarish" alt="Data Science" class="w-32 h-full object-cover">
+<div class="p-4 flex-1">
+<h4 class="font-bold mb-1">Data Science & Machine Learning</h4>
+<p class="text-sm text-gray-600 mb-2">Module 4: Data Visualization</p>
+<div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+<div class="bg-primary h-2 rounded-full" style="width: 42%"></div>
+</div>
+<div class="flex justify-between items-center text-xs text-gray-500">
+<span>42% complete</span>
+<span>Last accessed: Yesterday</span>
+</div>
+<button class="mt-3 bg-primary text-white px-4 py-1 !rounded-button whitespace-nowrap hover:bg-primary/90 text-sm">Continue</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<h3 class="text-lg font-bold mb-4">Upcoming Classes</h3>
+<div class="space-y-4">
+<div class="bg-white border border-gray-200 rounded-lg p-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold">Live Q&A: JavaScript Frameworks</h4>
+<p class="text-sm text-gray-600">With Dr. Michael Richardson</p>
+</div>
+<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Today</span>
+</div>
+<div class="flex items-center mt-2 text-sm text-gray-500">
+<i class="ri-time-line mr-1"></i> 3:00 PM - 4:30 PM
+</div>
+<button class="mt-3 bg-white border border-primary text-primary px-4 py-1 !rounded-button whitespace-nowrap hover:bg-primary/5 text-sm">Add to Calendar</button>
+</div>
+<div class="bg-white border border-gray-200 rounded-lg p-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold">Workshop: Data Visualization</h4>
+<p class="text-sm text-gray-600">With Dr. Sophia Chen</p>
+</div>
+<span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">Tomorrow</span>
+</div>
+<div class="flex items-center mt-2 text-sm text-gray-500">
+<i class="ri-time-line mr-1"></i> 1:00 PM - 3:00 PM
+</div>
+<button class="mt-3 bg-white border border-primary text-primary px-4 py-1 !rounded-button whitespace-nowrap hover:bg-primary/5 text-sm">Add to Calendar</button>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Recent Achievements</h3>
+<div class="space-y-4">
+<div class="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
+<div class="w-12 h-12 flex items-center justify-center bg-yellow-100 rounded-full mr-4">
+<i class="ri-medal-line ri-lg text-yellow-600"></i>
+</div>
+<div>
+<h4 class="font-bold">HTML & CSS Mastery</h4>
+<p class="text-sm text-gray-600">Completed with 95% score</p>
+</div>
+</div>
+<div class="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
+<div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-full mr-4">
+<i class="ri-trophy-line ri-lg text-green-600"></i>
+</div>
+<div>
+<h4 class="font-bold">JavaScript Fundamentals</h4>
+<p class="text-sm text-gray-600">Completed with 88% score</p>
+</div>
+</div>
+<div class="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mr-4">
+<i class="ri-award-line ri-lg text-blue-600"></i>
+</div>
+<div>
+<h4 class="font-bold">Python Basics</h4>
+<p class="text-sm text-gray-600">Completed with 92% score</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Statistics -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Our Impact in Numbers</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Join thousands of students who have transformed their careers through our comprehensive computer courses.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-gray-50 p-6 rounded-lg text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mx-auto mb-4">
+<i class="ri-user-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-4xl font-bold mb-2">25,000+</h3>
+<p class="text-gray-600">Active Students</p>
+</div>
+<div class="bg-gray-50 p-6 rounded-lg text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-green-100 rounded-full mx-auto mb-4">
+<i class="ri-book-open-line ri-2x text-green-600"></i>
+</div>
+<h3 class="text-4xl font-bold mb-2">120+</h3>
+<p class="text-gray-600">Courses Available</p>
+</div>
+<div class="bg-gray-50 p-6 rounded-lg text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-yellow-100 rounded-full mx-auto mb-4">
+<i class="ri-user-star-line ri-2x text-yellow-600"></i>
+</div>
+<h3 class="text-4xl font-bold mb-2">50+</h3>
+<p class="text-gray-600">Expert Instructors</p>
+</div>
+<div class="bg-gray-50 p-6 rounded-lg text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-purple-100 rounded-full mx-auto mb-4">
+<i class="ri-building-line ri-2x text-purple-600"></i>
+</div>
+<h3 class="text-4xl font-bold mb-2">200+</h3>
+<p class="text-gray-600">Partner Companies</p>
+</div>
+</div>
+<div class="mt-12" id="chart-container" style="width: 100%; height: 400px;"></div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">What Our Students Say</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Hear from our students who have transformed their careers through our comprehensive computer courses.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white p-6 rounded-lg shadow-md">
+<div class="flex text-yellow-400 mb-4">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-600 mb-6">"The Web Development Bootcamp completely transformed my career. I went from knowing nothing about coding to landing a job as a junior developer within 6 months of completing the course. The instructors were incredibly supportive and the curriculum was comprehensive."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20male%20student%20with%20casual%20professional%20attire%2C%20neutral%20background&width=100&height=100&seq=15&orientation=squarish" alt="Student" class="w-12 h-12 rounded-full object-cover mr-4">
+<div>
+<h4 class="font-bold">Robert Johnson</h4>
+<p class="text-sm text-gray-500">Web Developer at TechCorp</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md">
+<div class="flex text-yellow-400 mb-4">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-600 mb-6">"As someone transitioning from a non-technical background, the Data Science course provided me with exactly what I needed. The step-by-step approach made complex concepts accessible, and the hands-on projects gave me real-world experience that impressed employers during interviews."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20student%20with%20long%20hair%2C%20casual%20professional%20attire%2C%20neutral%20background&width=100&height=100&seq=16&orientation=squarish" alt="Student" class="w-12 h-12 rounded-full object-cover mr-4">
+<div>
+<h4 class="font-bold">Jennifer Williams</h4>
+<p class="text-sm text-gray-500">Data Analyst at FinTech Inc.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md">
+<div class="flex text-yellow-400 mb-4">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<p class="text-gray-600 mb-6">"The Cybersecurity Professional course exceeded my expectations. The curriculum was up-to-date with the latest threats and defense strategies, and the lab environments provided safe places to practice ethical hacking techniques. I'm now working in my dream role as a security consultant."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20student%20with%20short%20dark%20hair%2C%20casual%20professional%20attire%2C%20neutral%20background&width=100&height=100&seq=17&orientation=squarish" alt="Student" class="w-12 h-12 rounded-full object-cover mr-4">
+<div>
+<h4 class="font-bold">David Thompson</h4>
+<p class="text-sm text-gray-500">Security Analyst at SecureNet</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-16 bg-primary">
+<div class="container mx-auto px-4">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="text-3xl font-bold mb-4 text-white">Stay Updated with Our Newsletter</h2>
+<p class="text-gray-100 mb-8">Get the latest updates on new courses, tech trends, and exclusive offers delivered straight to your inbox.</p>
+<div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+<input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-white/20">
+<button class="bg-white text-primary px-6 py-3 !rounded-button whitespace-nowrap hover:bg-gray-100 font-medium">Subscribe</button>
+</div>
+<p class="text-gray-300 text-sm mt-4">We respect your privacy. Unsubscribe at any time.</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 text-gray-300">
+<div class="container mx-auto px-4 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a href="#" class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">RAJ</a>
+<p class="mb-4">RAJ Computer Institute - Empowering students with cutting-edge technology education since 2010.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-primary transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-primary transition-colors">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-primary transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-primary transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4 text-white">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#" class="hover:text-white">Home</a></li>
+<li><a href="#" class="hover:text-white">Courses</a></li>
+<li><a href="#" class="hover:text-white">About Us</a></li>
+<li><a href="#" class="hover:text-white">Instructors</a></li>
+<li><a href="#" class="hover:text-white">Contact</a></li>
+<li><a href="#" class="hover:text-white">Blog</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4 text-white">Support</h3>
+<ul class="space-y-2">
+<li><a href="#" class="hover:text-white">Help Center</a></li>
+<li><a href="#" class="hover:text-white">FAQs</a></li>
+<li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-white">Terms of Service</a></li>
+<li><a href="#" class="hover:text-white">Student Support</a></li>
+<li><a href="#" class="hover:text-white">Career Services</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4 text-white">Contact Us</h3>
+<ul class="space-y-3">
+<li class="flex items-start">
+<i class="ri-map-pin-line mt-1 mr-3"></i>
+<span>123 Education St, Tech City, CA 94103</span>
+</li>
+<li class="flex items-start">
+<i class="ri-mail-line mt-1 mr-3"></i>
+<span>info@rajcomputer.com</span>
+</li>
+<li class="flex items-start">
+<i class="ri-phone-line mt-1 mr-3"></i>
+<span>+1 (800) 123-4567</span>
+</li>
+<li class="flex items-start">
+<i class="ri-time-line mt-1 mr-3"></i>
+<span>Mon-Fri: 9:00 AM - 6:00 PM</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p>© 2025 RAJ Computer Institute. All rights reserved.</p>
+<div class="flex items-center space-x-4 mt-4 md:mt-0">
+<span>Payment Methods:</span>
+<i class="ri-visa-fill ri-lg"></i>
+<i class="ri-mastercard-fill ri-lg"></i>
+<i class="ri-paypal-fill ri-lg"></i>
+<i class="ri-apple-fill ri-lg"></i>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script id="chartScript">
+document.addEventListener('DOMContentLoaded', function() {
+const chartContainer = document.getElementById('chart-container');
+if (chartContainer) {
+const chart = echarts.init(chartContainer);
+const option = {
+animation: false,
+title: {
+text: 'Student Enrollment Growth',
+left: 'center',
+textStyle: {
+color: '#1f2937'
+}
+},
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+borderColor: '#e2e8f0',
+textStyle: {
+color: '#1f2937'
+}
+},
+legend: {
+data: ['Web Development', 'Data Science', 'Cybersecurity', 'Mobile Development'],
+bottom: 0,
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '10%',
+top: '15%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+boundaryGap: false,
+data: ['2020', '2021', '2022', '2023', '2024', '2025'],
+axisLine: {
+lineStyle: {
+color: '#d1d5db'
+}
+},
+axisLabel: {
+color: '#1f2937'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#d1d5db'
+}
+},
+axisLabel: {
+color: '#1f2937'
+},
+splitLine: {
+lineStyle: {
+color: '#e5e7eb'
+}
+}
+},
+series: [
+{
+name: 'Web Development',
+type: 'line',
+stack: 'Total',
+smooth: true,
+lineStyle: {
+width: 3
+},
+showSymbol: false,
+areaStyle: {
+opacity: 0.1,
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(87, 181, 231, 0.5)' },
+{ offset: 1, color: 'rgba(87, 181, 231, 0.1)' }
+])
+},
+emphasis: {
+focus: 'series'
+},
+color: 'rgba(87, 181, 231, 1)',
+data: [1200, 1800, 2500, 3200, 4100, 5000]
+},
+{
+name: 'Data Science',
+type: 'line',
+stack: 'Total',
+smooth: true,
+lineStyle: {
+width: 3
+},
+showSymbol: false,
+areaStyle: {
+opacity: 0.1,
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(141, 211, 199, 0.5)' },
+{ offset: 1, color: 'rgba(141, 211, 199, 0.1)' }
+])
+},
+emphasis: {
+focus: 'series'
+},
+color: 'rgba(141, 211, 199, 1)',
+data: [800, 1300, 2000, 2800, 3600, 4500]
+},
+{
+name: 'Cybersecurity',
+type: 'line',
+stack: 'Total',
+smooth: true,
+lineStyle: {
+width: 3
+},
+showSymbol: false,
+areaStyle: {
+opacity: 0.1,
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(251, 191, 114, 0.5)' },
+{ offset: 1, color: 'rgba(251, 191, 114, 0.1)' }
+])
+},
+emphasis: {
+focus: 'series'
+},
+color: 'rgba(251, 191, 114, 1)',
+data: [500, 900, 1500, 2200, 3000, 3800]
+},
+{
+name: 'Mobile Development',
+type: 'line',
+stack: 'Total',
+smooth: true,
+lineStyle: {
+width: 3
+},
+showSymbol: false,
+areaStyle: {
+opacity: 0.1,
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(252, 141, 98, 0.5)' },
+{ offset: 1, color: 'rgba(252, 141, 98, 0.1)' }
+])
+},
+emphasis: {
+focus: 'series'
+},
+color: 'rgba(252, 141, 98, 1)',
+data: [300, 700, 1200, 1800, 2500, 3200]
+}
+]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+chart.resize();
+});
+}
+});
+</script>
+<script id="tabSwitcherScript">
+document.addEventListener('DOMContentLoaded', function() {
+const tabSwitcher = document.querySelector('.tab-switcher');
+if (tabSwitcher) {
+const tabs = tabSwitcher.querySelectorAll('button');
+tabs.forEach(tab => {
+tab.addEventListener('click', function() {
+tabs.forEach(t => t.classList.remove('active-tab'));
+this.classList.add('active-tab');
+});
+});
+}
+});
+</script>
+<script id="formInteractionScript">
+document.addEventListener('DOMContentLoaded', function() {
+const rangeSliders = document.querySelectorAll('.range-slider');
+rangeSliders.forEach(slider => {
+slider.addEventListener('input', function() {
+const value = this.value;
+const outputId = this.dataset.output;
+if (outputId) {
+const output = document.getElementById(outputId);
+if (output) {
+output.textContent = value;
+}
+}
+});
+});
+const checkboxes = document.querySelectorAll('.custom-checkbox input');
+checkboxes.forEach(checkbox => {
+checkbox.addEventListener('change', function() {
+// Custom checkbox functionality can be added here
+});
+});
+const switches = document.querySelectorAll('.custom-switch input');
+switches.forEach(switchEl => {
+switchEl.addEventListener('change', function() {
+// Custom switch functionality can be added here
+});
+});
+const radioButtons = document.querySelectorAll('.custom-radio input');
+radioButtons.forEach(radio => {
+radio.addEventListener('change', function() {
+// Custom radio functionality can be added here
+});
+});
+});
+</script>
+</body>
+</html>
